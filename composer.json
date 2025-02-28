@@ -1,5 +1,5 @@
 {
-  "name" : "theseer/phpdox",
+  "name" : "stuffgest/phpdox",
   "description" : "A fast Documentation generator for PHP Code using standard technology (SRC, DOCBLOCK, XML and XSLT) with event based processing",
   "license" : "BSD-3-Clause",
   "authors" : [
