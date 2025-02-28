@@ -181,7 +181,8 @@ class PHPUnit extends AbstractEnricher implements
             'FAILURE'    => 0,
             'ERROR'      => 0,
             'RISKY'      => 0,
-            'WARNING'    => 0
+            'WARNING'    => 0,
+            'success'    => 0
         ];
 
         $methods = $unit->query('/phpdox:*/phpdox:constructor|/phpdox:*/phpdox:destructor|/phpdox:*/phpdox:method');
@@ -230,7 +231,12 @@ class PHPUnit extends AbstractEnricher implements
                     )
                 );
 
-                $result[$test->getAttribute('status')]++;
+                if($test->getAttribute('status') === 'success'){
+                    $result['PASSED']++;
+                }
+                else {
+                    $result[$test->getAttribute('status')]++;
+                }
             }
         }
 
