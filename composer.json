@@ -23,7 +23,7 @@
     "ext-iconv" : "*",
     "ext-fileinfo": "*",
     "ext-mbstring": "*",
-    "stuffgest/fdomdocument": "dev-master",
+    "stuffgest/fdomdocument": "v1.0.0",
     "theseer/directoryscanner" : "*",
     "phpunit/php-timer" : "*",
     "nikic/php-parser" : "*"
