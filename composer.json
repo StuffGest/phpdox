@@ -9,6 +9,12 @@
       "role" : "Developer"
     }
   ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/stuffgest/fdomdocument"
+    }
+  ],
   "require" : {
     "php" : ">=7.1",
     "ext-tokenizer" : "*",
@@ -17,7 +23,7 @@
     "ext-iconv" : "*",
     "ext-fileinfo": "*",
     "ext-mbstring": "*",
-    "stuffgest/fdomdocument": "*",
+    "stuffgest/fdomdocument": "dev-master",
     "theseer/directoryscanner" : "*",
     "phpunit/php-timer" : "*",
     "nikic/php-parser" : "*"
