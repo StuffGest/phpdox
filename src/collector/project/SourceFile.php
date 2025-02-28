@@ -27,7 +27,7 @@ class SourceFile extends FileInfo {
      */
     private $encoding;
 
-    public function __construct($file_name, FileInfo $srcDir = null, $encoding = 'auto') {
+    public function __construct($file_name, ?FileInfo $srcDir = null, $encoding = 'auto') {
         parent::__construct($file_name);
         $this->srcDir   = $srcDir;
         $this->encoding = $encoding;
