@@ -31,7 +31,7 @@ abstract class AbstractUnitObject {
      * @param string       $name
      * @param \SplFileInfo $file
      */
-    public function __construct($name = null, SourceFile $file = null) {
+    public function __construct($name = null, ?SourceFile $file = null) {
         if ($this->rootName === null) {
             throw new UnitObjectException('No or invalid rootname set', UnitObjectException::InvalidRootname);
         }
