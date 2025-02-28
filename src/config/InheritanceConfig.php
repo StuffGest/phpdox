@@ -8,7 +8,7 @@ class InheritanceConfig {
 
     protected $config;
 
-    public function __construct(CollectorConfig $config, fDOMElement $ctx = null) {
+    public function __construct(CollectorConfig $config, ?fDOMElement $ctx = null) {
         $this->config = $config;
         $this->ctx    = $ctx;
     }
