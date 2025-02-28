@@ -26,7 +26,7 @@ class ErrorHandler {
         \ini_set('display_errors', 'off');
         \register_shutdown_function([$this, 'handleShutdown']);
         \set_exception_handler([$this, 'handleException']);
-        \set_error_handler([$this, 'handleError'], \E_STRICT | \E_NOTICE | \E_WARNING | \E_RECOVERABLE_ERROR | \E_USER_ERROR);
+        \set_error_handler([$this, 'handleError'], \E_NOTICE | \E_WARNING | \E_RECOVERABLE_ERROR | \E_USER_ERROR);
         \class_exists(\TheSeer\phpDox\ErrorException::class, true);
     }
 
