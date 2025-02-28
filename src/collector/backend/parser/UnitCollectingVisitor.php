@@ -338,7 +338,8 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
             $parameter = $method->addParameter($param->var->name);
             $parameter->setByReference($param->byRef);
             $parameter->setVariadic($param->variadic);
-            $this->setVariableType($parameter, $param->type);
+            $param->type instanceof UnionType ? $paramtype = implode('|', $param->type->getSubNodeNames()) : $paramtype = $param->type;
+            $this->setVariableType($parameter, $paramtype);
             $this->setVariableDefaultValue($parameter, $param->default);
         }
     }
@@ -525,7 +526,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
      *
      * @throws ParseErrorException
      */
-    private function setVariableDefaultValue(AbstractVariableObject $variable, Expr $default = null): void {
+    private function setVariableDefaultValue(AbstractVariableObject $variable, ?Expr $default = null): void {
         if ($default === null) {
             return;
         }
