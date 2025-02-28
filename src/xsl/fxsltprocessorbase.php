@@ -97,7 +97,7 @@ namespace TheSeer\fXSL {
          *
          * @param \DomDocument $stylesheet A DomDocument containing an xslt stylesheet
          */
-        public function __construct(\DomDocument $stylesheet = NULL) {
+        public function __construct(?\DomDocument $stylesheet = null) {
             $this->hash = spl_object_hash($this);
             libxml_use_internal_errors(TRUE);
             libxml_clear_errors();
