@@ -11,8 +11,12 @@
   ],
   "repositories": [
     {
-      "type": "vcs",
+      "type": "git",
       "url": "https://github.com/stuffgest/fdomdocument"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/stuffgest/php-parser"
     }
   ],
   "require" : {
