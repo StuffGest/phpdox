@@ -11,11 +11,11 @@
   ],
   "repositories": [
     {
-      "type": "git",
+      "type": "vcs",
       "url": "https://github.com/stuffgest/fdomdocument"
     },
     {
-      "type": "git",
+      "type": "vcs",
       "url": "https://github.com/stuffgest/php-parser"
     }
   ],
@@ -30,7 +30,7 @@
     "stuffgest/fdomdocument": "v1.0.0",
     "theseer/directoryscanner" : "*",
     "phpunit/php-timer" : "*",
-    "stuffgest/php-parser" : "dev-master"
+    "stuffgest/php-parser" : "v1.0.0"
   },
   "autoload": {
     "classmap": [
