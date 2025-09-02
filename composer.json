@@ -30,7 +30,7 @@
     "stuffgest/fdomdocument": "v1.0.0",
     "theseer/directoryscanner" : "*",
     "phpunit/php-timer" : "*",
-    "stuffgest/php-parser" : "1.0.0"
+    "stuffgest/php-parser" : "v1.0.0"
   },
   "autoload": {
     "classmap": [
