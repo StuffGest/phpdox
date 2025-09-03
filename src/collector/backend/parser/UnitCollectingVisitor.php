@@ -65,9 +65,9 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
     }
 
     /**
-     * @return null|int|\PhpParser\Node|void
+     * @return null|int|\PhpParserSG\Node|void
      */
-    public function enterNode(\PhpParser\Node $node) {
+    public function enterNode(\PhpParserSG\Node $node) {
         if ($node instanceof NodeType\Namespace_ && $node->name != null) {
             $this->namespace             = \implode('\\', $node->name->parts);
             $this->aliasMap['::context'] = $this->namespace;
@@ -121,9 +121,9 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
     }
 
     /**
-     * @return null|false|int|\PhpParser\Node|\PhpParser\Node[]|void
+     * @return null|false|int|\PhpParserSG\Node|\PhpParserSG\Node[]|void
      */
-    public function leaveNode(\PhpParser\Node $node) {
+    public function leaveNode(\PhpParserSG\Node $node) {
         if ($node instanceof NodeType\Class_
             || $node instanceof NodeType\Interface_
             || $node instanceof NodeType\Trait_) {
@@ -282,7 +282,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
             return;
         }
 
-        if ($returnType instanceof \PhpParser\Node\Name\FullyQualified) {
+        if ($returnType instanceof \PhpParserSG\Node\Name\FullyQualified) {
             $returnTypeObject = $method->setReturnType($returnType->toString());
             $returnTypeObject->setNullable(false);
 
@@ -300,7 +300,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
             return;
         }
 
-        if ($returnType instanceof \PhpParser\Node\Name) {
+        if ($returnType instanceof \PhpParserSG\Node\Name) {
             $returnTypeObject = $method->setReturnType(
                 $this->unit->getName()
             );
@@ -334,7 +334,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
 
     private function processMethodParams(MethodObject $method, array $params): void {
         foreach ($params as $param) {
-            /** @var $param \PhpParser\Node\Param */
+            /** @var $param \PhpParserSG\Node\Param */
             $parameter = $method->addParameter($param->var->name);
             $parameter->setByReference($param->byRef);
             $parameter->setVariadic($param->variadic);
@@ -411,7 +411,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
             return;
         }
 
-        if ($type instanceof \PhpParser\Node\Name\FullyQualified) {
+        if ($type instanceof \PhpParserSG\Node\Name\FullyQualified) {
             $variable->setType((string)$type);
 
             return;
@@ -506,7 +506,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
         }
 
         if ($expr instanceof BinaryOp) {
-            $code = (new \PhpParser\PrettyPrinter\Standard)->prettyPrint([$expr]);
+            $code = (new \PhpParserSG\PrettyPrinter\Standard)->prettyPrint([$expr]);
 
             return [
                 'type'  => 'expression',
