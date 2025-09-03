@@ -11,3 +11,4 @@
 /tests/data/*/docs
 /tools
 .php_cs.cache
+/composer.lock
