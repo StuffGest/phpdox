@@ -18,6 +18,6 @@ class ParserBootstrapApi {
     }
 
     public function instantiatedByFactory(FactoryInterface $factory): void {
-        $this->factory->addParserFactory($this->annotation, $factory);
+        $this->factory->addPhpParserSG($this->annotation, $factory);
     }
 }

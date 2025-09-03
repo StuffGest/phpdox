@@ -39,7 +39,7 @@ class Factory {
      *
      * @throws FactoryException in case $annotation is not a string
      */
-    public function addParserFactory($annotation, $factory): void {
+    public function addPhpParserSG($annotation, $factory): void {
         $this->verifyType($annotation);
         $this->parserMap[$annotation] = $factory;
     }

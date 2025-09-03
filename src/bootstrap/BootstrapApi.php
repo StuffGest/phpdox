@@ -33,11 +33,11 @@ class BootstrapApi {
     private $engineFactory;
 
     /**
-     * Reference to the DocblockParserFactory instance
+     * Reference to the DocblockPhpParserSG instance
      *
      * @var DocBlockFactory
      */
-    private $parserFactory;
+    private $PhpParserSG;
 
     /**
      * @var EnricherFactory
@@ -76,7 +76,7 @@ class BootstrapApi {
     public function __construct(BackendFactory $bf, DocBlockFactory $df, EnricherFactory $erf, EngineFactory $enf, ProgressLogger $logger) {
         $this->backendFactory  = $bf;
         $this->engineFactory   = $enf;
-        $this->parserFactory   = $df;
+        $this->PhpParserSG   = $df;
         $this->enricherFactory = $erf;
         $this->logger          = $logger;
     }
@@ -134,7 +134,7 @@ class BootstrapApi {
     public function registerParser($annotation): ParserBootstrapApi {
         $this->logger->log("Registered parser for '$annotation' annotation");
 
-        return new ParserBootstrapApi($annotation, $this->parserFactory);
+        return new ParserBootstrapApi($annotation, $this->PhpParserSG);
     }
 
     /**
