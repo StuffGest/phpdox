@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector\Backend;
 
-use PhpParser\NodeTraverser;
-use PhpParser\NodeVisitor\NameResolver;
-use PhpParser\Parser;
-use PhpParser\PhpParserSG;
+use PhpParserSG\NodeTraverser;
+use PhpParserSG\NodeVisitor\NameResolver;
+use PhpParserSG\Parser;
+use PhpParserSG\ParserFactory;
 use TheSeer\phpDox\Collector\SourceFile;
 use TheSeer\phpDox\DocBlock\Parser as DocblockParser;
 use TheSeer\phpDox\ErrorHandler;
@@ -53,7 +53,7 @@ class PHPParser implements BackendInterface {
 
     private function getParserInstance(): Parser {
         if ($this->parser === null) {
-            $this->parser = (new PhpParserSG)->create(PhpParserSG::PREFER_PHP7, new CustomLexer());
+            $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7, new CustomLexer());
         }
 
         return $this->parser;

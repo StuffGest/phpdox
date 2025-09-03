@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector\Backend;
 
-use PhpParser\Node;
-use PhpParser\Node\Stmt as NodeType;
-use PhpParser\NodeVisitorAbstract;
+use PhpParserSG\Node;
+use PhpParserSG\Node\Stmt as NodeType;
+use PhpParserSG\NodeVisitorAbstract;
 
 class PublicOnlyVisitor extends NodeVisitorAbstract {
     /**

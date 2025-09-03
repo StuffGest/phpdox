@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 namespace TheSeer\phpDox\Collector\Backend;
 
-use PhpParser\Lexer\Emulative;
-use PhpParser\Parser\Tokens;
+use PhpParserSG\Lexer\Emulative;
+use PhpParserSG\Parser\Tokens;
 
 /**
  * CustomLexer as suggest for workaround for issue 26 (https://github.com/nikic/PHP-Parser/issues/26)
