@@ -10,3 +10,6 @@ and more.
 
 ##### Release 1.0.0
 - Ajout compatibilité php 8.4 uniquement. Voir dépot d'origine pour le reste.
+
+##### Release 1.0.1
+- Utilisation d'un fork php-parser dérivé de la version 4.x.
