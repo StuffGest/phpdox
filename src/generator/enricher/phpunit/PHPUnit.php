@@ -182,7 +182,8 @@ class PHPUnit extends AbstractEnricher implements
             'ERROR'      => 0,
             'RISKY'      => 0,
             'WARNING'    => 0,
-            'success'    => 0
+            'success'    => 0,
+            'failure'    => 0,
         ];
 
         $methods = $unit->query('/phpdox:*/phpdox:constructor|/phpdox:*/phpdox:destructor|/phpdox:*/phpdox:method');
