@@ -350,21 +350,21 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
 
         $resolved = $this->resolveExpressionValue($constNode->value);
 
-        $const->setValue($resolved['value']);
+        $const?->setValue($resolved['value']);
 
         if (isset($resolved['constant'])) {
-            $const->setConstantReference($resolved['constant']);
+            $const?->setConstantReference($resolved['constant']);
         }
 
         if (isset($resolved['type'])) {
-            $const->setType($resolved['type']);
+            $const?->setType($resolved['type']);
         }
 
         $docComment = $node->getDocComment();
 
         if ($docComment !== null) {
             $block = $this->docBlockParser->parse($docComment, $this->aliasMap);
-            $const->setDocBlock($block);
+            $const?->setDocBlock($block);
         }
     }
 
