@@ -13,3 +13,6 @@ and more.
 
 ##### Release 1.0.1
 - Utilisation d'un fork php-parser dérivé de la version 4.x.
+
+##### Release 1.0.2
+- Ajout de nullsafe
