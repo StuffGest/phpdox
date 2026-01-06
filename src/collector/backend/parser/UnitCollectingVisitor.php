@@ -230,12 +230,12 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
     private function processMethod(NodeType\ClassMethod $node): void {
 
         /** @var $method \TheSeer\phpDox\Collector\MethodObject */
-        $method = $this->unit->addMethod($node->name);
-        $method->setStartLine($node->getAttribute('startLine'));
-        $method->setEndLine($node->getAttribute('endLine'));
-        $method->setAbstract($node->isAbstract());
-        $method->setFinal($node->isFinal());
-        $method->setStatic($node->isStatic());
+        $method = $this->unit?->addMethod($node->name);
+        $method?->setStartLine($node->getAttribute('startLine'));
+        $method?->setEndLine($node->getAttribute('endLine'));
+        $method?->setAbstract($node->isAbstract());
+        $method?->setFinal($node->isFinal());
+        $method?->setStatic($node->isStatic());
 
         $this->processMethodReturnType($method, $node->getReturnType());
 
@@ -246,13 +246,13 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
         } elseif ($node->isProtected()) {
             $visibility = 'protected';
         }
-        $method->setVisibility($visibility);
+        $method?->setVisibility($visibility);
 
         $docComment = $node->getDocComment();
 
         if ($docComment !== null) {
             $block = $this->docBlockParser->parse($docComment, $this->aliasMap);
-            $method->setDocBlock($block);
+            $method?->setDocBlock($block);
         }
 
         $this->processMethodParams($method, $node->params);
@@ -262,13 +262,13 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
         }
     }
 
-    private function processMethodReturnType(MethodObject $method, $returnType): void {
+    private function processMethodReturnType(?MethodObject $method, $returnType): void {
         if ($returnType === null) {
             return;
         }
 
         if ($returnType instanceof UnionType) {
-            $method->setReturnType(join('|', $returnType->types));
+            $method?->setReturnType(join('|', $returnType->types));
             return;
         }
 
@@ -276,35 +276,35 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
             ? ((string)$returnType->type)
             : ((string)$returnType);
         if ($this->isBuiltInType($typeStr, self::TYPE_RETURN)) {
-            $returnTypeObject = $method->setReturnType($returnType);
-            $returnTypeObject->setNullable(false);
+            $returnTypeObject = $method?->setReturnType($returnType);
+            $returnTypeObject?->setNullable(false);
 
             return;
         }
 
         if ($returnType instanceof \PhpParserSG\Node\Name\FullyQualified) {
-            $returnTypeObject = $method->setReturnType($returnType->toString());
-            $returnTypeObject->setNullable(false);
+            $returnTypeObject = $method?->setReturnType($returnType->toString());
+            $returnTypeObject?->setNullable(false);
 
             return;
         }
 
         if ($returnType instanceof NullableType) {
             if ((string)$returnType->type === 'self') {
-                $returnTypeObject = $method->setReturnType($this->unit->getName());
+                $returnTypeObject = $method?->setReturnType($this->unit->getName());
             } else {
-                $returnTypeObject = $method->setReturnType($returnType->type);
+                $returnTypeObject = $method?->setReturnType($returnType->type);
             }
-            $returnTypeObject->setNullable(true);
+            $returnTypeObject?->setNullable(true);
 
             return;
         }
 
         if ($returnType instanceof \PhpParserSG\Node\Name) {
-            $returnTypeObject = $method->setReturnType(
+            $returnTypeObject = $method?->setReturnType(
                 $this->unit->getName()
             );
-            $returnTypeObject->setNullable(false);
+            $returnTypeObject?->setNullable(false);
 
             return;
         }
@@ -318,7 +318,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
         );
     }
 
-    private function processInlineComments(MethodObject $method, array $stmts): void {
+    private function processInlineComments(?MethodObject $method, array $stmts): void {
         foreach ($stmts as $stmt) {
             if ($stmt->hasAttribute('comments')) {
                 foreach ($stmt->getAttribute('comments') as $comment) {
@@ -332,7 +332,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
         }
     }
 
-    private function processMethodParams(MethodObject $method, array $params): void {
+    private function processMethodParams(?MethodObject $method, array $params): void {
         foreach ($params as $param) {
             /** @var $param \PhpParserSG\Node\Param */
             $parameter = $method->addParameter($param->var->name);
