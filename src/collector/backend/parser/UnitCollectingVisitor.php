@@ -346,7 +346,7 @@ class UnitCollectingVisitor extends NodeVisitorAbstract implements TypeAwareInte
 
     private function processClassConstant(NodeType\ClassConst $node): void {
         $constNode = $node->consts[0];
-        $const     = $this->unit->addConstant($constNode->name);
+        $const     = $this->unit?->addConstant($constNode->name);
 
         $resolved = $this->resolveExpressionValue($constNode->value);
 
